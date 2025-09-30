@@ -66,6 +66,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
+  position: relative;
 }
 .menu-icon,
 .fav-icon,
@@ -77,8 +78,13 @@ body {
 .company-name {
   font-size: 18px;
   font-weight: bold;
-  flex: 1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
+  width: max-content;
+  pointer-events: none;
 }
 
 .nav-icons {
