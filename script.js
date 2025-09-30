@@ -40,5 +40,89 @@ document.getElementById("shopNowBtn").addEventListener("click", () => {
 });
 // Note: Ensure the HTML has an element with id="products" for this to work.
 
+// Quick View Modal functionality
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("quickViewModal");
+  const closeBtn = document.querySelector(".quick-view-close");
+  const quickImg = document.getElementById("quickViewImg");
+  const quickName = document.getElementById("quickViewName");
+  const quickPrice = document.getElementById("quickViewPrice");
+  const quickCat = document.getElementById("quickViewCat");
+  const quickDetail = document.getElementById("quickViewDetail");
+
+  // Sample data – ideally fetch from a real source
+  const productDetails = {
+    "Product 1": {
+      img: "img/producto-1.jpg",
+      category: "EARRINGS",
+      price: "$2.00",
+      detail: "Beautiful handcrafted item with premium materials."
+    },
+    "Product 2": {
+      img: "img/producto-2.jpg",
+      category: "EARRINGS",
+      price: "$2.00",
+      detail: "Modern design and comfortable feel."
+    },
+    "Product 3": {
+      img: "img/producto-3.jpg",
+      category: "EARRINGS",
+      price: "$2.00",
+      detail: "Modern design and comfortable feel."
+    },
+    "Product 4": {
+      img: "img/producto-4.jpg",
+      category: "EARRINGS",
+      price: "$2.00",
+      detail: "Modern design and comfortable feel."
+    },
+    "Product 5": {
+      img: "img/producto-5.jpg",
+      category: "EARRINGS",
+      price: "$2.00",
+      detail: "Beautiful handcrafted item with premium materials."
+    },
+    "Product 6": {
+      img: "img/producto-6.jpg",
+      category: "EARRINGS",
+      price: "$2.00",
+      detail: "Modern design and comfortable feel."
+    },
+    "Product 7": {
+      img: "img/producto-7.jpg",
+      category: "EARRINGS",
+      price: "$2.00",
+      detail: "Modern design and comfortable feel."
+    },
+    "Product 8": {
+      img: "img/producto-8.jpg",
+      category: "RINGS",
+      price: "$2.00",
+      detail: "Modern design and comfortable feel."
+    },
+    // Add more products as needed
+
+  };
+
+  document.querySelectorAll(".product-card img").forEach(img => {
+    img.style.cursor = "pointer";
+    img.addEventListener("click", () => {
+      const name = img.nextElementSibling.textContent;
+      const data = productDetails[name] || {};
+      quickImg.src = data.img || img.src;
+      quickName.textContent = name;
+      quickPrice.textContent = data.price || "";
+      quickCat.textContent = data.category || "";
+      quickDetail.textContent = data.detail || "No details provided.";
+      modal.style.display = "flex";
+    });
+  });
+
+  closeBtn.addEventListener("click", () => modal.style.display = "none");
+  modal.addEventListener("click", e => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+});
+
 
 
