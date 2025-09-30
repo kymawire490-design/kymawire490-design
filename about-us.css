@@ -40,7 +40,45 @@
   opacity: 0;
 }
 
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.menu-icon,
+.fav-icon,
+.cart-icon {
+  font-size: 20px;
+  cursor: pointer;
+  margin: 0 8px;
+}
+.company-name {
+  font-size: 18px;
+  font-weight: bold;
+}
 
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-icons .insta-icon svg {
+  color: #E1306C; /* color Instagram */
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.nav-icons .insta-icon svg:hover {
+  transform: scale(1.2);
+}
 
 
 body {
