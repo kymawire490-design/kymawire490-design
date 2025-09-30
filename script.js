@@ -1,9 +1,9 @@
 // Announcement rotation with left slide effect
 const announcements = [
   "Welcome to our store",
-  "Free shipping on orders over $100",
-  "New arrivals every week",
-  "Sign up for 10% off your first order"
+  "Business Fair 2025 Special Offers",
+  "New arrivals Only for OCTOBER 4",
+  "GET YOUR RING AND EARRINGS NOW",
 ];
 
 let index = 0;
