@@ -40,7 +40,7 @@
 .navbar {
 	display: flex;
 	justify-content: space-between;
-	align-items: stretch;
+	align-items: center;
 	min-width: 0;
 	padding: 12px 20px;
 	background: white;
@@ -48,6 +48,7 @@
 	position: sticky;
 	top: 0;
 	z-index: 1000;
+	position: relative;
 }
 .menu-icon,
 .fav-icon,
@@ -61,8 +62,13 @@
 .company-name {
 	font-size: 18px;
 	font-weight: bold;
-	flex: 1;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 	text-align: center;
+	width: max-content;
+	pointer-events: none;
 }
 .nav-icons {
 	display: flex;
