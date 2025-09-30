@@ -1,167 +1,216 @@
+
 /* Announcement bar */
 .announcement {
-  background: black;
-  color: white;
-  text-align: center;
-  padding: 16px 8px;   /* more vertical space */
-  font-size: 18px;     /* bigger text */
-  overflow: hidden;
-  position: relative;
-  height: 50px;        /* fixed height so text doesn’t jump */
+	background: black;
+	color: white;
+	text-align: center;
+	padding: 16px 8px;
+	font-size: 18px;
+	overflow: hidden;
+	position: relative;
+	height: 50px;
 }
-
 .announcement span {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%); /* vertical center */
-  transition: transform 0.6s ease, opacity 0.6s ease;
-  white-space: nowrap;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	transition: transform 0.6s ease, opacity 0.6s ease;
+	white-space: nowrap;
 }
-
-/* Start state: off-screen right */
 .slide-in {
-  transform: translate(100%, -50%);
-  opacity: 0;
+	transform: translate(100%, -50%);
+	opacity: 0;
 }
 .slide-in.active {
-  transform: translate(0, -50%);
-  opacity: 1;
+	transform: translate(0, -50%);
+	opacity: 1;
 }
-
-/* Leaving state: move left */
 .slide-out {
-  transform: translate(0, -50%);
-  opacity: 1;
+	transform: translate(0, -50%);
+	opacity: 1;
 }
 .slide-out.leave {
-  transform: translate(-100%, -50%);
-  opacity: 0;
+	transform: translate(-100%, -50%);
+	opacity: 0;
 }
 
 /* Navbar */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 20px;
-  background: white;
-  border-bottom: 1px solid #ddd;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 20px;
+	background: white;
+	border-bottom: 1px solid #ddd;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
 }
 .menu-icon,
 .fav-icon,
 .cart-icon {
-  font-size: 20px;
-  cursor: pointer;
-  margin: 0 8px;
+	font-size: 20px;
+	cursor: pointer;
+	margin: 0 8px;
 }
 .company-name {
-  font-size: 18px;
-  font-weight: bold;
+	font-size: 18px;
+	font-weight: bold;
 }
-
 .nav-icons {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
 }
-
 .nav-icons .insta-icon svg {
-  color: #E1306C; /* color Instagram */
-  cursor: pointer;
-  transition: transform 0.2s ease;
+	color: #E1306C;
+	cursor: pointer;
+	transition: transform 0.2s ease;
 }
-
 .nav-icons .insta-icon svg:hover {
-  transform: scale(1.2);
+	transform: scale(1.2);
 }
-
 
 body {
-	font-family:  Arial, sans-serif;
-	background: #f5f5f5;
+	font-family: Arial, sans-serif;
+	background: #fff;
+	color: #222;
 	margin: 0;
 	padding: 0;
 }
 
-.sections-container {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-	gap: 2rem;
-	padding: 2rem;
+/* Hero section */
+.hero {
+	position: relative;
+	width: 100%;
+	height: 60vh;
+	min-height: 350px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.hero video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.hero-text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color: white;
+}
+.hero-text button {
+	padding: 12px 28px;
+	background: transparent;
+	color: white;
+	border: 2px solid white;
+	border-radius: 25px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	transition: all 0.3s ease;
+}
+.hero-text button:hover {
+	background: white;
+	color: black;
+}
+.hero-text h2 {
+	font-size: 20px;
+	font-weight: 400;
+}
+.hero-text h1 {
+	font-size: 50px;
+	margin: 10px 0;
+}
+.hero-text p {
+	margin-bottom: 20px;
+	font-size: 18px;
 }
 
-
-.section-square {
-	position: relative;
+/* About section cards */
+.about-section {
+	padding: 40px 20px;
+	background: #f5f5f5;
+}
+.about-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 30px;
+	justify-content: center;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+.about-card {
 	background: #fff;
-	border-radius: 20px;
+	border-radius: 16px;
 	box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 	padding: 2rem;
-	transition: transform 0.3s, box-shadow 0.3s;
-	font-family: 'Playfair Display', serif;
+	min-width: 280px;
+	max-width: 350px;
+	flex: 1 1 300px;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	min-height: 350px;
-	overflow: hidden;
+	transition: transform 0.3s, box-shadow 0.3s;
 }
-
-.mission-section {
-	background: url('img/bg-snow-mountain.jpg') center/cover no-repeat;
-	color: #fff;
-}
-.vision-section {
-	background: url('img/bg-sunset-city.jpg') center/cover no-repeat;
-	color: #fff;
-}
-.objectives-section {
-	background: url('img/LOGO.jpg') center/cover no-repeat;
-	color: #fff;
-}
-
-.section-header {
-	background: rgba(0,0,0,0.5);
-	padding: 1rem 1.5rem;
-	border-radius: 12px;
-	margin-bottom: 1rem;
-	width: fit-content;
-}
-
-.section-header h1, .section-header h2, .section-header h3 {
-	margin: 0;
-	color: #fff;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 700;
-	letter-spacing: 1px;
-}
-
-.section-content {
-	background: rgba(0,0,0,0.35);
-	padding: 1rem 1.5rem;
-	border-radius: 12px;
-}
-
-.section-square:hover {
+.about-card:hover {
 	transform: translateY(-10px) scale(1.03);
 	box-shadow: 0 16px 32px rgba(0,0,0,0.12);
 }
-
-.section-square h1, .section-square h2, .section-square h3 {
+.about-card h2 {
+	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
-	letter-spacing: 1px;
+	font-size: 24px;
 	margin-bottom: 1rem;
+	color: #222;
 }
-
-.section-square p, .section-square ul {
+.about-card p, .about-card ul {
 	font-size: 1.1rem;
 	line-height: 1.6;
+	color: #444;
+}
+.about-card ul {
+	padding-left: 1.2em;
 }
 
-.section-square ul {
-	padding-left: 1.2em;
+/* Footer */
+footer {
+	background: #111;
+	color: #eee;
+	padding: 20px 0;
+	text-align: center;
+}
+footer .footer-content p {
+	margin: 6px 0;
+	font-size: 14px;
+}
+footer .footer-content a {
+	color: #eee;
+	text-decoration: none;
+}
+footer .footer-content a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+.footer-bottom {
+	margin-top: 10px;
+	font-size: 13px;
+	color: #aaa;
+}
+
+@media (max-width: 900px) {
+	.about-container {
+		flex-direction: column;
+		align-items: center;
+	}
+	.about-card {
+		max-width: 90vw;
+		min-width: 220px;
+	}
 }
