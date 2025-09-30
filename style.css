@@ -1,0 +1,271 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #fff;
+  color: #222;
+}
+
+/* Announcement bar */
+.announcement {
+  background: black;
+  color: white;
+  text-align: center;
+  padding: 16px 8px;   /* more vertical space */
+  font-size: 18px;     /* bigger text */
+  overflow: hidden;
+  position: relative;
+  height: 50px;        /* fixed height so text doesn’t jump */
+}
+
+.announcement span {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%); /* vertical center */
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  white-space: nowrap;
+}
+
+/* Start state: off-screen right */
+.slide-in {
+  transform: translate(100%, -50%);
+  opacity: 0;
+}
+.slide-in.active {
+  transform: translate(0, -50%);
+  opacity: 1;
+}
+
+/* Leaving state: move left */
+.slide-out {
+  transform: translate(0, -50%);
+  opacity: 1;
+}
+.slide-out.leave {
+  transform: translate(-100%, -50%);
+  opacity: 0;
+}
+
+
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.menu-icon,
+.fav-icon,
+.cart-icon {
+  font-size: 20px;
+  cursor: pointer;
+  margin: 0 8px;
+}
+.company-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Hero section */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.hero video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+.hero-text button {
+  padding: 12px 28px;
+  background: transparent;     /* transparent so video shows */
+  color: white;
+  border: 2px solid white;     /* white border */
+  border-radius: 25px;         /* rounded corners */
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+                            /* Hover effect */
+.hero-text button:hover {
+  background: white;
+  color: black;
+}
+.hero-text h2 {
+  font-size: 20px;
+  font-weight: 400;
+}
+.hero-text h1 {
+  font-size: 50px;
+  margin: 10px 0;
+}
+.hero-text p {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+.hero-text button {
+  padding: 12px 24px;
+  background: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Products section */
+.products-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+.products-section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+.products-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 20px 0;
+}
+.product-card {
+  min-width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  background: #fff;
+  padding: 10px;
+  flex-shrink: 0;
+}
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.product-card h3 {
+  font-size: 16px;
+  margin: 10px 0 5px;
+}
+.product-card p {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 10px;
+}
+.product-card button {
+  background: black;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+/* Company background section */
+/* --- Responsive company section override --- */
+.company-section {
+  width: 100%;
+  min-height: 350px;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center;
+  background-image: url('img/bg-sunset-city.jpg') !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+
+.company-section .overlay {
+  background: rgba(0,0,0,0.5);
+  padding: 20px 40px;
+  border-radius: 12px;
+  color: #fff;
+  max-width: 90%;
+}
+
+@media (max-width: 768px) {
+  .company-section {
+    min-height: 250px;
+    background-position: center top !important;
+  }
+}
+
+
+.company-section h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.company-section p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.company-section .about-btn {
+  padding: 12px 28px;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.company-section .about-btn:hover {
+  background: white;
+  color: black;
+}
+
+/* Footer */
+footer {
+  background: #111;
+  color: #eee;
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer .footer-content p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+footer .footer-content a {
+  color: #eee;
+  text-decoration: none;
+}
+
+footer .footer-content a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #aaa;
+}
+
