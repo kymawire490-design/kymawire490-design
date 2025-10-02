@@ -1,4 +1,4 @@
-// Preloader functionality
+// ---------- Preloader ----------
 function initPreloader() {
   let percent = 0;
   const percentText = document.getElementById("percent");
@@ -6,7 +6,6 @@ function initPreloader() {
   const mainContent = document.getElementById("main-content");
   const progressFill = document.getElementById("progressFill");
 
-  // Reset visible states (in case of reload)
   if (percentText) percentText.textContent = "0%";
   if (progressFill) progressFill.style.width = "0%";
   if (mainContent) mainContent.style.display = "none";
@@ -26,38 +25,39 @@ function initPreloader() {
     }
   }, 40);
 }
-// Run init when DOM ready (works even if script placed in head or body)
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initPreloader);
 } else {
   initPreloader();
 }
-//preloader finished
 
-// Sidebar toggle
+// ---------- Sidebar Toggle ----------
 const menuIcon = document.querySelector(".menu-icon");
 const sidebar = document.getElementById("sidebar");
 const closeSidebar = document.getElementById("closeSidebar");
 
-// Open sidebar
-menuIcon.addEventListener("click", () => {
-  sidebar.classList.add("active");
-});
+if (menuIcon && sidebar) {
+  menuIcon.addEventListener("click", () => {
+    sidebar.classList.add("active");
+  });
+}
 
-// Close sidebar
-closeSidebar.addEventListener("click", () => {
-  sidebar.classList.remove("active");
-});
+if (closeSidebar && sidebar) {
+  closeSidebar.addEventListener("click", () => {
+    sidebar.classList.remove("active");
+  });
+}
 
 // Optional: close when clicking outside
 document.addEventListener("click", (e) => {
-  if (sidebar.classList.contains("active") && !sidebar.contains(e.target) && !menuIcon.contains(e.target)) {
+  if (sidebar && sidebar.classList.contains("active") &&
+      !sidebar.contains(e.target) && !menuIcon.contains(e.target)) {
     sidebar.classList.remove("active");
   }
 });
-// End Sidebar
 
-// Announcement rotation with left slide effect
+// ---------- Announcement Rotation ----------
 const announcements = [
   "Welcome to our store",
   "Business Fair 2025 Special Offers",
@@ -65,54 +65,104 @@ const announcements = [
   "GET YOUR RING AND EARRINGS NOW",
 ];
 
-let index = 0;
+let announcementIndex = 0; // renamed to avoid conflict
 const announcementEl = document.getElementById("announcementText");
 
 function showAnnouncement() {
-  // Slide current text out to the left
+  if (!announcementEl) return;
+
   announcementEl.classList.remove("slide-in", "active");
   announcementEl.classList.add("slide-out", "leave");
 
-  // Wait for slide-out before changing text
   setTimeout(() => {
-    index = (index + 1) % announcements.length;
-    announcementEl.textContent = announcements[index];
+    announcementIndex = (announcementIndex + 1) % announcements.length;
+    announcementEl.textContent = announcements[announcementIndex];
 
-    // Reset for next entry
-    announcementEl.className = "slide-in"; // reset classes
-    void announcementEl.offsetWidth; // force reflow
-
-    // Animate in from right
+    announcementEl.className = "slide-in";
+    void announcementEl.offsetWidth;
     announcementEl.classList.add("active");
-  }, 600); // match CSS transition
+  }, 600);
 }
 
-// Run every 5s
-setInterval(showAnnouncement, 5000);
+if (announcementEl) {
+  announcementEl.classList.add("slide-in", "active");
+  setInterval(showAnnouncement, 5000);
+}
 
-// Initial state
-announcementEl.classList.add("slide-in", "active");
+// ---------- Shop Now Button ----------
+const shopNowBtn = document.getElementById("shopNowBtn");
+if (shopNowBtn) {
+  shopNowBtn.addEventListener("click", () => {
+    const productsSection = document.getElementById("products");
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+}
 
-// Shop Now button scroll
-document.getElementById("shopNowBtn").addEventListener("click", () => {
-  document.getElementById("products").scrollIntoView({ behavior: "smooth" });
-});
-// End Announcement rotation
-
-// Favorite icon toggle
+// ---------- Favorite Icon Toggle ----------
 document.addEventListener("DOMContentLoaded", () => {
   const favIcons = document.querySelectorAll(".fav-icon");
 
   favIcons.forEach(icon => {
     icon.addEventListener("click", () => {
       icon.classList.toggle("active");
-
-      if (icon.classList.contains("active")) {
-        icon.textContent = "♥"; // filled heart
-      } else {
-        icon.textContent = "♡"; // empty heart
-      }
+      icon.textContent = icon.classList.contains("active") ? "♥" : "♡";
     });
   });
 });
-// End Favorite icon toggle
+
+// ---------- Board Slider (Infinite Loop) ----------
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("boardContainer");
+  const cards = container.querySelectorAll(".board-card");
+  const prevBtn = document.querySelector(".prev");
+  const nextBtn = document.querySelector(".next");
+
+  let currentIndex = 1; // because we will add a clone at start
+  const cardWidth = cards[0].offsetWidth + 20; // card + margin
+
+  // Clone first and last
+  const firstClone = cards[0].cloneNode(true);
+  const lastClone = cards[cards.length - 1].cloneNode(true);
+
+  container.appendChild(firstClone);
+  container.insertBefore(lastClone, container.firstChild);
+
+  const totalCards = container.querySelectorAll(".board-card").length;
+
+  // Set initial position
+  container.style.transform = `translateX(${-cardWidth * currentIndex}px)`;
+
+  function moveToIndex(index) {
+    container.style.transition = "transform 0.5s ease";
+    container.style.transform = `translateX(${-cardWidth * index}px)`;
+    currentIndex = index;
+  }
+
+  // Next button
+  nextBtn.addEventListener("click", () => {
+    if (currentIndex >= totalCards - 1) return;
+    moveToIndex(currentIndex + 1);
+  });
+
+  // Prev button
+  prevBtn.addEventListener("click", () => {
+    if (currentIndex <= 0) return;
+    moveToIndex(currentIndex - 1);
+  });
+
+  // After transition, snap to real card if on clone
+  container.addEventListener("transitionend", () => {
+    if (container.querySelectorAll(".board-card")[currentIndex].isSameNode(firstClone)) {
+      container.style.transition = "none";
+      currentIndex = 1;
+      container.style.transform = `translateX(${-cardWidth * currentIndex}px)`;
+    }
+    if (container.querySelectorAll(".board-card")[currentIndex].isSameNode(lastClone)) {
+      container.style.transition = "none";
+      currentIndex = totalCards - 2;
+      container.style.transform = `translateX(${-cardWidth * currentIndex}px)`;
+    }
+  });
+});
