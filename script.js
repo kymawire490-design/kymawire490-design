@@ -38,7 +38,7 @@ announcementEl.classList.add("slide-in", "active");
 document.getElementById("shopNowBtn").addEventListener("click", () => {
   document.getElementById("products").scrollIntoView({ behavior: "smooth" });
 });
-// Note: Ensure the HTML has an element with id="products" for this to work.
+// End Announcement rotation
 
 // Quick View Modal functionality
 document.addEventListener("DOMContentLoaded", () => {
@@ -123,6 +123,126 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === modal) modal.style.display = "none";
   });
 });
+//end quick view modal
+
+// Sidebar toggle
+const menuIcon = document.querySelector(".menu-icon");
+const sidebar = document.getElementById("sidebar");
+const closeSidebar = document.getElementById("closeSidebar");
+
+// Open sidebar
+menuIcon.addEventListener("click", () => {
+  sidebar.classList.add("active");
+});
+
+// Close sidebar
+closeSidebar.addEventListener("click", () => {
+  sidebar.classList.remove("active");
+});
+
+// Optional: close when clicking outside
+document.addEventListener("click", (e) => {
+  if (sidebar.classList.contains("active") && !sidebar.contains(e.target) && !menuIcon.contains(e.target)) {
+    sidebar.classList.remove("active");
+  }
+});
+// End Sidebar
+
+// Preloader functionality
+function initPreloader() {
+  let percent = 0;
+  const percentText = document.getElementById("percent");
+  const preloader = document.getElementById("preloader");
+  const mainContent = document.getElementById("main-content");
+  const progressFill = document.getElementById("progressFill");
+
+  // Reset visible states (in case of reload)
+  if (percentText) percentText.textContent = "0%";
+  if (progressFill) progressFill.style.width = "0%";
+  if (mainContent) mainContent.style.display = "none";
+
+  const loading = setInterval(() => {
+    percent++;
+    if (percentText) percentText.textContent = percent + "%";
+    if (progressFill) progressFill.style.width = percent + "%";
+
+    if (percent >= 100) {
+      clearInterval(loading);
+      if (preloader) preloader.classList.add("hidden");
+      setTimeout(() => {
+        if (preloader) preloader.style.display = "none";
+        if (mainContent) mainContent.style.display = "block";
+      }, 800);
+    }
+  }, 40);
+}
+// Run init when DOM ready (works even if script placed in head or body)
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initPreloader);
+} else {
+  initPreloader();
+}
+//preloader finished
+
+// Favorite icon toggle
+document.addEventListener("DOMContentLoaded", () => {
+  const favIcons = document.querySelectorAll(".fav-icon");
+
+  favIcons.forEach(icon => {
+    icon.addEventListener("click", () => {
+      icon.classList.toggle("active");
+
+      if (icon.classList.contains("active")) {
+        icon.textContent = "♥"; // filled heart
+      } else {
+        icon.textContent = "♡"; // empty heart
+      }
+    });
+  });
+});
+// End Favorite icon toggle
+
+// Product carousel functionality
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".products-container");
+  const products = document.querySelectorAll(".product-card");
+  const prevBtn = document.querySelector(".carousel-btn.prev");
+  const nextBtn = document.querySelector(".carousel-btn.next");
+
+  let index = 0;
+  const visibleCards = 3; // number of cards visible at once
+  const cardWidth = products[0].offsetWidth + 20; // card width + margin
+
+  function showSlide(i) {
+    container.style.transform = `translateX(-${i * cardWidth}px)`;
+  }
+
+  function nextSlide() {
+    if (index < products.length - visibleCards) {
+      index++;
+    } else {
+      index = 0; // loop back
+    }
+    showSlide(index);
+  }
+
+  function prevSlide() {
+    if (index > 0) {
+      index--;
+    } else {
+      index = products.length - visibleCards; // go to last group
+    }
+    showSlide(index);
+  }
+
+  nextBtn.addEventListener("click", nextSlide);
+  prevBtn.addEventListener("click", prevSlide);
+
+  // Auto scroll every 4s
+  setInterval(nextSlide, 4000);
+});
+
+
 
 
 

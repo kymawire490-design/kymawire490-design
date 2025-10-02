@@ -8,6 +8,19 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!-- Preloader -->
+<div id="preloader">
+  <div class="loader-content">
+    <div class="logo">K Y M A</div>
+    <div class="slogan">WAVES OF STYLE, ETERNAL AS METAL</div>
+    <div class="percent" id="percent">0%</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+</div> 
+<!-- Main Page -->
+<div id="main-content" style="display:none;"> </div>
 
   <!-- Announcement Bar -->
   <div class="announcement">
@@ -17,7 +30,9 @@
   <!-- Navbar -->
   <div class="navbar">
     <div class="menu-icon">☰</div>
-    <div class="company-name">K Y M A</div>
+    <div class="company-name">
+      <a href="index.html">K Y M A</a>
+    </div>
 
     <div class="nav-icons">
     <!-- Instagram icon -->
@@ -38,7 +53,7 @@
   <!-- Hero Section -->
   <section class="hero">
     <video autoplay muted loop>
-      <source src="video/bg-img.mp4" type="video/mp4">
+      <source src="video\bg-sunset.mp4" type="video/mp4">
     </video>
     <div class="hero-text">
       <h2>INTRODUCING</h2>
@@ -50,7 +65,9 @@
 
   <!-- Products Section --> 
   <section class="products-section" id="products">
-    <h2>NEW ARRIVALS</h2>
+  <h2>NEW ARRIVALS</h2>
+  <div class="products-carousel">
+    <button class="carousel-btn prev">❮</button>
     <div class="products-container">
       <div class="product-card">
         <img src="img/producto-1.jpg" alt="Product 1">
@@ -89,19 +106,21 @@
         <button>Add to Cart</button>
       </div>
       <div class="product-card">
-        <img src="img/producto-7.jpg" alt="Product 7">
+        <img src="img\producto-7.jpg" alt="Product 6">
         <h3>Product 7</h3>
         <p>$2.00</p>
         <button>Add to Cart</button>
       </div>
       <div class="product-card">
-        <img src="img/producto-8.jpg" alt="Product 8">
+        <img src="img\producto-8.jpg" alt="Product 6">
         <h3>Product 8</h3>
         <p>$2.00</p>
         <button>Add to Cart</button>
       </div>
     </div>
-  </section>
+    <button class="carousel-btn next">❯</button>
+  </div>
+</section>
 
   <!-- Background Section -->
   <section class="company-section">
@@ -154,8 +173,21 @@
     </div>
   </div>
 
+  <!-- Sidebar Menu -->
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-header">
+    <a href="index.html" class="sidebar-company">K Y M A</a>
+    <span id="closeSidebar" class="close-btn">&times;</span>
+  </div>
+  <ul class="sidebar-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="about-us.html">About Us</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+  </ul>
+</div>
+
+
   <!-- Link your JS file -->
   <script src="script.js"></script>
-
 </body>
 </html>
