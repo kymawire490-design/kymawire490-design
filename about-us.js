@@ -116,32 +116,3 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 // End Favorite icon toggle
-
-document.addEventListener("DOMContentLoaded", () => {
-  const scrollBoxes = document.querySelectorAll(".scroll-box");
-  const quickViewOverlay = document.getElementById("quickViewOverlay");
-  const quickViewTitle = document.getElementById("quickViewTitle");
-  const quickViewContent = document.getElementById("quickViewContent");
-  const closeQuickView = document.getElementById("closeQuickView");
-
-  // Open Quick View
-  scrollBoxes.forEach(box => {
-    box.addEventListener("click", () => {
-      quickViewTitle.textContent = box.querySelector("h2").textContent;
-      quickViewContent.textContent = box.querySelector("p").textContent;
-      quickViewOverlay.style.display = "flex";
-    });
-  });
-
-  // Close Quick View
-  closeQuickView.addEventListener("click", () => {
-    quickViewOverlay.style.display = "none";
-  });
-
-  // Close on outside click
-  quickViewOverlay.addEventListener("click", (e) => {
-    if (e.target === quickViewOverlay) {
-      quickViewOverlay.style.display = "none";
-    }
-  });
-});

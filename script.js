@@ -203,44 +203,19 @@ document.addEventListener("DOMContentLoaded", () => {
 // End Favorite icon toggle
 
 // Product carousel functionality
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.querySelector(".products-container");
-  const products = document.querySelectorAll(".product-card");
-  const prevBtn = document.querySelector(".carousel-btn.prev");
-  const nextBtn = document.querySelector(".carousel-btn.next");
+const container = document.querySelector('.products-container');
+const products = document.querySelectorAll('.product-card');
 
-  let index = 0;
-  const visibleCards = 3; // number of cards visible at once
-  const cardWidth = products[0].offsetWidth + 20; // card width + margin
+let currentIndex = 0;
+const totalProducts = products.length;
 
-  function showSlide(i) {
-    container.style.transform = `translateX(-${i * cardWidth}px)`;
-  }
-
-  function nextSlide() {
-    if (index < products.length - visibleCards) {
-      index++;
-    } else {
-      index = 0; // loop back
-    }
-    showSlide(index);
-  }
-
-  function prevSlide() {
-    if (index > 0) {
-      index--;
-    } else {
-      index = products.length - visibleCards; // go to last group
-    }
-    showSlide(index);
-  }
-
-  nextBtn.addEventListener("click", nextSlide);
-  prevBtn.addEventListener("click", prevSlide);
-
-  // Auto scroll every 4s
-  setInterval(nextSlide, 4000);
-});
+// Auto scroll every 3s
+setInterval(() => {
+  currentIndex++;
+  if (currentIndex >= totalProducts) currentIndex = 0;
+  const cardWidth = products[0].offsetWidth + 20; // card + margin
+  container.scrollTo({ left: currentIndex * cardWidth, behavior: "smooth" });
+}, 3000);
 
 
 
