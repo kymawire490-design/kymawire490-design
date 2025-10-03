@@ -1,4 +1,5 @@
-/* Reset */
+
+/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
@@ -11,30 +12,26 @@ body {
   color: #222;
 }
 
-/* Announcement bar */
-
-/* Contact Section: vertical rectangle, single-row fields */
+/* Contact Section: single square-like form */
 .contact-section {
-  background: #fff;
-  padding: 48px 0 32px 0;
+  min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  justify-content: center;
+  background: #fff;
 }
 .contact-container {
   background: #f8f8f8;
-  border-radius: 16px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-  padding: 40px 32px 40px 32px;
-  max-width: 400px;
-  width: 100%;
-  min-height: 520px;
-  text-align: center;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+  padding: 40px 36px;
+  width: 400px;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 .contact-title {
   font-size: 2rem;
@@ -49,25 +46,23 @@ body {
   margin-bottom: 22px;
 }
 .contact-form {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  width: 100%;
-  max-width: 320px;
-  margin: 0 auto;
+  gap: 16px;
 }
 .form-group {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   width: 100%;
-  margin-bottom: 0;
 }
 .form-group label {
   font-size: 1rem;
   color: #222;
   margin-bottom: 6px;
   font-weight: 500;
+  text-align: left;
 }
 .form-group input,
 .form-group textarea {
@@ -79,7 +74,6 @@ body {
   background: #fff;
   color: #222;
   transition: border 0.2s;
-  margin-bottom: 0;
 }
 .form-group input:focus,
 .form-group textarea:focus {
@@ -120,21 +114,11 @@ body {
 @media (max-width: 600px) {
   .contact-container {
     padding: 18px 8px 16px 8px;
-    max-width: 98vw;
-    min-height: 400px;
+    width: 98vw;
+    min-height: 320px;
   }
   .contact-title {
     font-size: 1.3rem;
-  }
-
-  #preloader {
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 9999;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
   }
 }
 
