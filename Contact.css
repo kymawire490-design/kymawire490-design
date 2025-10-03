@@ -71,16 +71,26 @@ body {
 
   /* Sidebar */
   .sidebar {
-    position: fixed; left: -260px; top: 0; width: 260px; height: 100%; background: #fff; box-shadow: 2px 0 8px rgba(0,0,0,0.08); z-index: 2001; transition: left 0.3s; padding-top: 30px;
+    position: fixed;
+    top: 0;
+    left: -250px;   /* Hidden by default */
+    width: 250px;
+    height: 100%;
+    background: rgba(0,0,0,0.9);  /* semi-transparent dark */
+    color: white;
+    z-index: 2000;
+    padding: 20px;
+    transition: left 0.3s ease;
   }
-  .sidebar.open { left: 0; }
-  .sidebar-header { display: flex; justify-content: space-between; align-items: center; padding: 0 18px; }
-  .sidebar-company { font-size: 1.3rem; color: #E1306C; text-decoration: none; font-weight: bold; }
-  .close-btn { font-size: 2rem; cursor: pointer; }
-  .sidebar-links { list-style: none; padding: 0; margin-top: 30px; }
-  .sidebar-links li { margin: 18px 0; }
-  .sidebar-links a { color: #222; text-decoration: none; font-size: 1.1rem; transition: color 0.2s; }
-  .sidebar-links a:hover { color: #E1306C; }
+  .sidebar.active, .sidebar.open { left: 0; /* Slide in */ }
+  .sidebar-header { display: flex; justify-content: space-between; align-items: center; }
+  .sidebar-company { font-size: 20px; font-weight: bold; color: white; text-decoration: none; }
+  .sidebar-company:hover { text-decoration: underline; }
+  .close-btn { font-size: 26px; cursor: pointer; color: white; }
+  .sidebar-links { list-style: none; margin-top: 30px; padding: 0; }
+  .sidebar-links li { margin: 15px 0; }
+  .sidebar-links a { color: white; text-decoration: none; font-size: 18px; transition: color 0.2s ease; }
+  .sidebar-links a:hover { color: #E1306C; /* Instagram pink as hover color */ }
 
   /* Contact Section */
   .contact-section {
@@ -194,20 +204,21 @@ body > * {
 }
 /* End Preloader */
 
+/* Sidebar (match product.css style) */
 .sidebar {
   position: fixed;
   top: 0;
   left: -250px;   /* Hidden by default */
   width: 250px;
   height: 100%;
-  background: rgba(0,0,0,0.9);  /* semi-transparent */
+  background: rgba(0,0,0,0.9);  /* semi-transparent dark */
   color: white;
   z-index: 2000;
   padding: 20px;
   transition: left 0.3s ease;
 }
 
-.sidebar.active {
+.sidebar.active, .sidebar.open {
   left: 0; /* Slide in */
 }
 
