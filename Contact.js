@@ -94,9 +94,12 @@ setInterval(showAnnouncement, 5000);
 announcementEl.classList.add("slide-in", "active");
 
 // Shop Now button scroll
-document.getElementById("shopNowBtn").addEventListener("click", () => {
-  document.getElementById("products").scrollIntoView({ behavior: "smooth" });
-});
+const shopNowBtn = document.getElementById("shopNowBtn");
+if (shopNowBtn) {
+  shopNowBtn.addEventListener("click", () => {
+    document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+  });
+}
 // End Announcement rotation
 
 // Favorite icon toggle
