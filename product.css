@@ -258,7 +258,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 15px 40px;
   align-items: stretch;   /* all cards stretch to equal height */
@@ -276,10 +276,8 @@ body {
   padding: 15px;
   text-align: center;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-  /* NEW: make all equal height */
   height: 100%;
-  min-height: 340px;  /* sets baseline */
+  min-height: 340px;   /* desktop baseline */
 }
 
 .product-card:hover {
@@ -298,14 +296,26 @@ body {
 }
 /* Smaller devices: reduce image height */
 @media (max-width: 768px) {
+  .catalog {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* ✅ tighter grid */
+  }
+  .product-card {
+    min-height: 280px;  /* ✅ shorter on tablets */
+  }
   .product-card img {
     height: 120px;
   }
 }
 
 @media (max-width: 480px) {
+  .catalog {
+    grid-template-columns: 1fr; /* ✅ single column on small phones */
+  }
+  .product-card {
+    min-height: auto; /* let content define height */
+  }
   .product-card img {
-    height: 100px;
+    height: 100px; /* ✅ smaller images */
   }
 }
 
