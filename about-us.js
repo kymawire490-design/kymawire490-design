@@ -166,3 +166,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+const boardContainer = document.querySelector(".board-container");
+  const prevBtn = document.querySelector(".nav.prev");
+  const nextBtn = document.querySelector(".nav.next");
+
+  // Width of one card (including margin)
+  function getCardWidth() {
+    const card = document.querySelector(".board-card");
+    return card ? card.offsetWidth + 20 : 300; // fallback if no card
+  }
+
+  nextBtn.addEventListener("click", () => {
+    boardContainer.scrollBy({
+      left: getCardWidth(),
+      behavior: "smooth"
+    });
+  });
+
+  prevBtn.addEventListener("click", () => {
+    boardContainer.scrollBy({
+      left: -getCardWidth(),
+      behavior: "smooth"
+    });
+  });
