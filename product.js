@@ -267,3 +267,42 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+
+// ====== Mobile Filter Toggle ======
+const filterBtn = document.getElementById("filterToggle");
+const filterSidebar = document.getElementById("filterSidebar");
+const applyFiltersBtn = document.getElementById("applyFilters");
+
+if (filterBtn) {
+  filterBtn.addEventListener("click", () => {
+    filterSidebar.classList.toggle("active");
+  });
+}
+
+// ====== Filtering Logic ======
+applyFiltersBtn.addEventListener("click", () => {
+  const selectedCategories = [...document.querySelectorAll('input[name="category"]:checked')].map(cb => cb.value);
+  const selectedColors = [...document.querySelectorAll('input[name="color"]:checked')].map(cb => cb.value);
+  const selectedStock = [...document.querySelectorAll('input[name="stock"]:checked')].map(cb => cb.value);
+
+  document.querySelectorAll(".product-card").forEach(card => {
+    const category = card.dataset.category;
+    const color = card.dataset.color;
+    const stock = card.dataset.stock;
+
+    const matchCategory = selectedCategories.length ? selectedCategories.includes(category) : true;
+    const matchColor = selectedColors.length ? selectedColors.includes(color) : true;
+    const matchStock = selectedStock.length ? selectedStock.includes(stock) : true;
+
+    if (matchCategory && matchColor && matchStock) {
+      card.style.display = "flex";
+    } else {
+      card.style.display = "none";
+    }
+  });
+
+  // Close sidebar on mobile after applying
+  if (window.innerWidth <= 768) {
+    filterSidebar.classList.remove("active");
+  }
+});
