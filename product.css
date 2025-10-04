@@ -307,15 +307,19 @@ body {
   }
 }
 
+/* Small phones */
 @media (max-width: 480px) {
   .catalog {
-    grid-template-columns: 1fr; /* ✅ single column on small phones */
+    grid-template-columns: 1fr; /* single column */
   }
   .product-card {
     min-height: auto; /* let content define height */
   }
   .product-card img {
-    height: 100px; /* ✅ smaller images */
+    width: 100%;
+    height: auto;              /* keep proportions */
+    max-height: 220px;         /* prevent images from getting too tall */
+    object-fit: contain;       /* show full image without cropping */
   }
 }
 
